@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
-from modules.utils import clear_folder, clear_missed_file, remove_url_from_input
+from modules.utils import clear_missed_file, remove_url_from_input
 
 DOWNLOADER_URL = "https://twittervideodownloader.com/en/"
 WAIT_TIMEOUT = 20
@@ -52,7 +52,12 @@ def save_file(video_url: str, output_dir: Path) -> None:
     if not filename.endswith(".mp4"):
         filename += ".mp4"
 
+    stem = Path(filename).stem
     dest = output_dir / filename
+    index = 1
+    while dest.exists():
+        dest = output_dir / f"{stem}_{index}.mp4"
+        index += 1
     response = requests.get(video_url, stream=True, timeout=60)
     response.raise_for_status()
     with open(dest, "wb") as f:
@@ -101,10 +106,7 @@ def write_missed(missed: list[str], output_dir: Path) -> None:
 def run(urls: list[str], output_dir: Path, input_file: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    print("  [~] Cleaning up before run...")
-    clear_folder(output_dir)
     clear_missed_file(output_dir / "x_missed.txt")
-    print()
 
     print(f"Found {len(urls)} URL(s) to download. Saving to: {output_dir}\n")
 
@@ -118,6 +120,7 @@ def run(urls: list[str], output_dir: Path, input_file: Path) -> None:
                 remove_url_from_input(url, input_file)
             else:
                 missed.append(url)
+                remove_url_from_input(url, input_file)
             print(f"  [{'✓' if success else '✗'}] {'Done' if success else 'Skipped'}\n")
             time.sleep(2)
     finally:

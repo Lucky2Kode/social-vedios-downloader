@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import yt_dlp
 
-from modules.utils import clear_folder, clear_missed_file, remove_url_from_input
+from modules.utils import clear_missed_file, remove_url_from_input
 
 VALID_RESOLUTIONS = (144, 240, 360, 480, 720, 1080, 1440, 2160)
 
@@ -16,7 +16,7 @@ def build_video_opts(output_dir: Path, resolution: int) -> dict:
     return {
         "format": fmt,
         "merge_output_format": "mp4",
-        "outtmpl": str(output_dir / "%(title)s.%(ext)s"),
+        "outtmpl": str(output_dir / "%(title).80B [%(id)s].%(ext)s"),
         "quiet": False,
         "noplaylist": True,
     }
@@ -25,7 +25,7 @@ def build_video_opts(output_dir: Path, resolution: int) -> dict:
 def build_audio_opts(output_dir: Path) -> dict:
     return {
         "format": "bestaudio/best",
-        "outtmpl": str(output_dir / "%(title)s.%(ext)s"),
+        "outtmpl": str(output_dir / "%(title).80B [%(id)s].%(ext)s"),
         "quiet": False,
         "noplaylist": True,
         "postprocessors": [
@@ -52,6 +52,7 @@ def download_urls(urls: list[str], opts: dict, input_file: Path) -> list[str]:
             except yt_dlp.utils.DownloadError as e:
                 print(f"   ERROR: {e}", file=sys.stderr)
                 missed.append(url)
+                remove_url_from_input(url, input_file)
     return missed
 
 
@@ -108,10 +109,7 @@ def write_missed(missed: list[str], output_dir: Path) -> None:
 def run(urls: list[str], output_dir: Path, input_file: Path, extra_flags: list[str]) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    print("  [~] Cleaning up before run...")
-    clear_folder(output_dir)
     clear_missed_file(output_dir / "youtube_missed.txt")
-    print()
 
     mode, resolution = parse_flags(extra_flags)
     if not mode:

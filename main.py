@@ -55,6 +55,8 @@ def main() -> None:
         print("  --video          Video+Audio at 720p (default)")
         print("  --video=1080     Video+Audio at specified resolution")
         print("  --audio          Audio only as MP3 (youtube only)")
+        print("  --browser=X      Browser cookies for Facebook (default: chrome)")
+        print("                   chrome, safari, firefox, edge, brave")
         print()
         print("Valid resolutions: 144, 240, 360, 480, 720, 1080, 1440, 2160")
         sys.exit(1 if len(sys.argv) < 2 else 0)
