@@ -4,7 +4,7 @@ from pathlib import Path
 def clear_folder(folder: Path) -> None:
     removed = 0
     for f in folder.iterdir():
-        if f.is_file():
+        if f.is_file() and f.name != ".gitkeep":
             f.unlink()
             removed += 1
     print(f"  [~] Cleared {removed} file(s) from: {folder}")
