@@ -1,6 +1,12 @@
 .venv/
 __pycache__/
 *.pyc
-downloads/
+downloads/**
+!downloads/facebook/
+!downloads/facebook/.gitkeep
+!downloads/x/
+!downloads/x/.gitkeep
+!downloads/youtube/
+!downloads/youtube/.gitkeep
 .DS_Store
 .idea/
