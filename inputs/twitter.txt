@@ -1,0 +1,12 @@
+# Add Twitter/X video URLs below, one per line.
+# Lines starting with # are ignored.
+# Example:
+# https://x.com/username/status/1234567890
+
+https://x.com/forareasoninx_/status/2059329261261979717?s=20
+https://x.com/GraduateAdda/status/2058440166558318822?s=20
+https://x.com/WarriorYsJagan/status/2058514150436000085?s=20
+https://x.com/ActressWizard/status/2058221743718928449?s=20
+https://x.com/YSJ2024/status/2057356824534532260?s=20
+https://x.com/WarriorYsJagan/status/2057339582526771351?s=20
+https://x.com/Jagananna2Po/status/2057323169607033007?s=20

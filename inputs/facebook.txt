@@ -1,0 +1,4 @@
+# Add Facebook video URLs below, one per line.
+# Lines starting with # are ignored.
+# Example:
+# https://www.facebook.com/watch/?v=1234567890
