@@ -1,3 +1,10 @@
+# ─────────────────────────────────────────────────────
+# HOW TO RUN:
+#   python main.py youtube                  (interactive)
+#   python main.py youtube --video          (720p MP4)
+#   python main.py youtube --video=1080     (1080p MP4)
+#   python main.py youtube --audio          (MP3 only)
+# ─────────────────────────────────────────────────────
 # Add YouTube video URLs below, one per line.
 # Lines starting with # are ignored.
 # Example:

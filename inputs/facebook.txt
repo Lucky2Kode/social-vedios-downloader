@@ -1,3 +1,8 @@
+# ─────────────────────────────────────────────────────
+# HOW TO RUN:
+#   python main.py facebook                 (720p MP4)
+#   python main.py facebook --video=1080    (1080p MP4)
+# ─────────────────────────────────────────────────────
 # Add Facebook video URLs below, one per line.
 # Lines starting with # are ignored.
 # Example:
