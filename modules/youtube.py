@@ -9,8 +9,8 @@ VALID_RESOLUTIONS = (144, 240, 360, 480, 720, 1080, 1440, 2160)
 
 def build_video_opts(output_dir: Path, resolution: int) -> dict:
     fmt = (
-        f"bestvideo[height<={resolution}][ext=mp4]+bestaudio[ext=m4a]"
-        f"/bestvideo[height<={resolution}]+bestaudio[ext=m4a]"
+        f"bestvideo[height<={resolution}][ext=mp4][vcodec^=avc]+bestaudio[ext=m4a]"
+        f"/bestvideo[height<={resolution}][ext=mp4]+bestaudio[ext=m4a]"
         f"/bestvideo[height<={resolution}][ext=mp4]+bestaudio"
         f"/best[height<={resolution}][ext=mp4]"
         f"/best[height<={resolution}]"
